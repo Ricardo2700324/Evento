@@ -32,7 +32,7 @@ public class Convidado {
 	public String getNomeConvidado() {
 		return nomeConvidado;
 	}
-	public void setNomeconvidado(String nomeConvidado) {
+	public void setNomeConvidado(String nomeConvidado) {
 		this.nomeConvidado = nomeConvidado;
 	}
 	
