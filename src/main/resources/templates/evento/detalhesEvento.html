@@ -25,11 +25,16 @@
 			<p>Local: <spam th:text="${evento.data}"></spam></p>
 			<p>Horario: <spam th:text="${evento.horario}"></spam></p>
 		</div>
-		<form method="post">
-		    Nome: <input type="text" value="" name="nomeConvidado"/>
-		    RG: <input type="text" value="" name="rg"/>
+		
+		<th:block th:include="mensagemValidacao"></th:block>
+		
+		<form method="post" th:object="${convidado}">
+		    Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"/>
+		    RG: <input type="text" value="" name="rg" placeholder="AA-00.000.000" class="validate"/>
 		    <button class="waves-effect waves-light btn" type="submit">Adicionar Convidado</button>
 		</form>
+		
+		
 	</div>
 	<h5>Lista Convidados: </h5>
 	<div class="container" th:each="convidado : ${convidados}">
