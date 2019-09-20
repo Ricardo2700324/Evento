@@ -13,40 +13,56 @@
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="style/styleCss.css"/>
 </head>
 <body>
 
-	<h1>Evento</h1>
-	<h3><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista de Evento</a></h3>
-	<div th:each="evento : ${evento}" class="container">
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Evento</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="/eventos" class="waves-effect waves-light btn"><i
+							class="material-icons left">add_circle_outline</i>Lista de Evento</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+
+
+	<div th:each="evento : ${evento}" class="container detalhesEvento">
+	  <h5>Detalhes do Evento:</h5>
 		<div class="row">
 			<p>Nome: <spam th:text="${evento.nome}"></spam></p>
 			<p>Data: <spam th:text="${evento.local}"></spam></p>
 			<p>Local: <spam th:text="${evento.data}"></spam></p>
 			<p>Horario: <spam th:text="${evento.horario}"></spam></p>
 		</div>
-		
+	</div>
 		<th:block th:include="mensagemValidacao"></th:block>
-		
+	  <div class="container formConvidado">	
 		<form method="post" th:object="${convidado}">
 		    Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"/>
 		    RG: <input type="text" value="" name="rg" placeholder="AA-00.000.000" class="validate"/>
 		    <button class="waves-effect waves-light btn" type="submit">Adicionar Convidado</button>
 		</form>
-		
-		
-	</div>
-	<h5>Lista Convidados: </h5>
-	<div class="container" th:each="convidado : ${convidados}">
-	   <div class="row">
-	      <div class="input-field col s3">
-			<p><spam th:text="${convidado.nomeConvidado}"></spam></p>
-		  </div>	
-		  <div class="input-field col s3">
-			<p><spam th:text="${convidado.rg}"></spam></p>
-		  </div>	
-	   </div>	
-	</div>
+	  </div>
+	<table class="container tabelaConvidado">
+	  <thead>
+	  	<tr>
+	  		<th>Nome Convidado</th>
+	  		<th>RG </th>
+	  	</tr>
+	  </thead>	
+	  <tbody>
+	  	<tr th:each="convidado : ${convidados}">
+	  	  <td><spam th:text="${convidado.nomeConvidado}"></spam></td>
+	  	  <td><spam th:text="${convidado.rg}"></spam></td>
+	  	</tr>
+	  </tbody>	
+	</table>
 
 
 	<script type="text/javascript"
